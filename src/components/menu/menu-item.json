@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_menu_menu_items",
+  "info": {
+    "displayName": "MenuItem",
+    "icon": "bulletList",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "Label": {
+      "type": "string"
+    },
+    "URI": {
+      "type": "string"
+    },
+    "IsExternal": {
+      "type": "boolean"
+    },
+    "children": {
+      "displayName": "ChildMenuItem",
+      "type": "component",
+      "repeatable": true,
+      "component": "menu.child-menu-item"
+    }
+  }
+}
