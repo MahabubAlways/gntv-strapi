@@ -518,6 +518,7 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
     singularName: 'page';
     pluralName: 'pages';
     displayName: 'Pages';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -525,6 +526,7 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
   attributes: {
     Title: Schema.Attribute.String;
     slug: Schema.Attribute.UID<'Title'>;
+    Desc: Schema.Attribute.Blocks;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
