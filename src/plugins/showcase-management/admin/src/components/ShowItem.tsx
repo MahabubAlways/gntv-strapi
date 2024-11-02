@@ -14,6 +14,9 @@ const StyledTd = styled(Td)`
     padding: 0px 4px;
   }
 `;
+const StyledDrag = styled(Drag)`
+  cursor: grab;
+`;
 
 interface Show {
   show_id: string;
@@ -46,7 +49,7 @@ const ShowItem = ({ show }: IProps) => {
       as="tr"
     >
       <StyledTd>
-        <Drag fill="currentcolor" onPointerDown={(e) => dragControls.start(e)} />
+        <StyledDrag fill="currentcolor" onPointerDown={(e) => dragControls.start(e)} />
       </StyledTd>
       <StyledTd>
         <Checkbox aria-label="Select all entries" />
