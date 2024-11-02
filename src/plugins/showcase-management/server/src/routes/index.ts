@@ -1,4 +1,5 @@
 import showcase from './showcase';
+import showcaseAdmin from './showcaseAdmin';
 
 export default {
   showcase: {
@@ -7,6 +8,6 @@ export default {
   },
   admin: {
     type: 'admin',
-    routes: [...showcase],
+    routes: [...showcaseAdmin],
   },
 };

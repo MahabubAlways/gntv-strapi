@@ -1,8 +1,10 @@
 import { useFetchClient } from '@strapi/admin/strapi-admin';
-import { Box, Checkbox, Flex, Table, Tbody, Td, Th, Thead, Tr } from '@strapi/design-system';
-import { Drag, List, Pencil } from '@strapi/icons';
-import { useEffect, useState } from 'react';
+import { Box, Button, Checkbox, Table, Th, Thead, Tr } from '@strapi/design-system';
+import { List } from '@strapi/icons';
+import { Reorder } from 'framer-motion';
+import { MouseEvent, useEffect, useState } from 'react';
 import styled from 'styled-components';
+import ShowItem from './ShowItem';
 
 const Container = styled.div`
   padding-block-start: 56px;
@@ -22,15 +24,8 @@ const Title = styled.h1`
 const StyledTable = styled(Table)`
   min-width: 100%;
   table-layout: fixed;
-`;
-
-const StyledTd = styled(Td)`
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  &:first-of-type {
-    width: 30px;
-    min-width: fit-content;
+  & tr {
+    border-bottom: 1px solid rgb(50, 50, 77);
   }
 `;
 
@@ -40,6 +35,14 @@ const StyledTh = styled(Th)`
   text-overflow: ellipsis;
   &:first-of-type {
     width: 20px;
+    min-width: fit-content;
+  }
+  &:nth-child(2) {
+    width: 40px;
+    min-width: fit-content;
+  }
+  &:nth-child(3) {
+    width: 60px;
     min-width: fit-content;
   }
 `;
@@ -56,24 +59,59 @@ interface Show {
 
 const ShowManager = () => {
   const [shows, setShows] = useState<Show[]>([]);
-  const { get } = useFetchClient();
+  const [saveOrder, setSaveOrder] = useState<null | string>(null);
+  const { get, post } = useFetchClient();
 
+  const fetchShows = async () => {
+    try {
+      const response = await get<Show[]>('/showcase-management/shows');
+      setShows(response.data);
+    } catch (error) {
+      console.error('Error fetching shows:', error);
+    }
+  };
   useEffect(() => {
-    const fetchShows = async () => {
-      try {
-        const response = await get<Show[]>('/api/showcase-management/shows');
-        setShows(response.data);
-      } catch (error) {
-        console.error('Error fetching shows:', error);
-      }
-    };
-
     fetchShows();
   }, [get]);
 
+  const handleSaveOrder = async (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+
+    const showOrder: { show_id: string; order: number }[] = [];
+
+    shows.forEach((show, index) => {
+      showOrder.push({
+        show_id: show.show_id,
+        order: index + 1,
+      });
+    });
+
+    console.log('submitting...', showOrder);
+    setSaveOrder('Order Saving...');
+
+    try {
+      const { data } = await post('/showcase-management/show-order', showOrder);
+      setSaveOrder('Saved');
+      await fetchShows();
+      setTimeout(() => {
+        setSaveOrder(null);
+      }, 1500);
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
   return (
     <Container>
-      <Title>Show Management</Title>
+      <Title>Showcase Management</Title>
+      <Box paddingBottom={6}>
+        <Button onClick={handleSaveOrder}>Save Order</Button>
+        {saveOrder && (
+          <Box paddingTop={4}>
+            <p>{saveOrder}</p>
+          </Box>
+        )}
+      </Box>
       <Box>
         <StyledTable>
           <Thead>
@@ -84,44 +122,19 @@ const ShowManager = () => {
               <StyledTh>
                 <Checkbox aria-label="Select all entries" />
               </StyledTh>
+              <StyledTh>Active</StyledTh>
               <StyledTh>Title</StyledTh>
               <StyledTh>Creator</StyledTh>
               <StyledTh>Description</StyledTh>
               <StyledTh>Thumbnail</StyledTh>
-              <StyledTh>Active</StyledTh>
-              <StyledTh>Order</StyledTh>
               <StyledTh>Actions</StyledTh>
             </Tr>
           </Thead>
-          <Tbody>
+          <Reorder.Group axis="y" as="tbody" values={shows} onReorder={setShows}>
             {shows.map((show) => (
-              <Tr key={show.show_id}>
-                <StyledTd>
-                  <Drag fill="currentcolor" />
-                </StyledTd>
-                <StyledTd>
-                  <Checkbox aria-label="Select all entries" />
-                </StyledTd>
-                <StyledTd>{show.show_title}</StyledTd>
-                <StyledTd>{show.show_creator}</StyledTd>
-                <StyledTd>{show.show_description}</StyledTd>
-                <StyledTd>
-                  {show.thumbnail_url ? (
-                    <img width={120} src={show.thumbnail_url} alt={show.show_title} />
-                  ) : (
-                    'No Thumbnail Found'
-                  )}
-                </StyledTd>
-                <StyledTd>{show.Active == 0 ? 'False' : 'True'}</StyledTd>
-                <StyledTd>{show.order}</StyledTd>
-                <StyledTd>
-                  <Flex>
-                    <Pencil />
-                  </Flex>
-                </StyledTd>
-              </Tr>
+              <ShowItem key={show.show_id} show={show} />
             ))}
-          </Tbody>
+          </Reorder.Group>
         </StyledTable>
       </Box>
     </Container>
