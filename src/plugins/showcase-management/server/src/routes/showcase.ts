@@ -1,11 +1,11 @@
 export default [
   {
     method: 'GET',
-    path: '/shows',
-    handler: 'getShowsController.getShows',
+    path: '/active-shows',
+    handler: 'getShowsController.getActiveShows',
     config: {
       auth: {
-        scope: ['plugin::showcase-management.getShowsController.getShows'],
+        scope: ['plugin::showcase-management.getShowsController.getActiveShows'],
       },
     },
   },

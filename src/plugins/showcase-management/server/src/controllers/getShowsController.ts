@@ -30,6 +30,32 @@ const getShowsController = ({ strapi }: { strapi: Core.Strapi }) => ({
       throw new ApplicationError('Failed to fetch shows');
     }
   },
+  async getActiveShows(ctx) {
+    try {
+      const fetchShows = async () => {
+        const connection = await mysql.createConnection({
+          host: '216.225.203.234',
+          user: 'devdb',
+          password: '1t_f1m71G',
+          database: 'Staging_Interocitor',
+        });
+        try {
+          const [rows] = await connection.execute(
+            'SELECT show_title, show_description, thumbnail_url, show_creator FROM shows WHERE Active = TRUE ORDER BY `order` ASC'
+          );
+          return rows;
+        } finally {
+          await connection.end();
+        }
+      };
+
+      const shows = await fetchShows();
+      ctx.body = shows;
+    } catch (error) {
+      console.error('Error fetching shows:', error);
+      throw new ApplicationError('Failed to fetch shows');
+    }
+  },
 });
 
 export default getShowsController;
