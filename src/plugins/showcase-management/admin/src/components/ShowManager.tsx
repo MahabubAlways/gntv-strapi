@@ -1,5 +1,17 @@
 import { useFetchClient } from '@strapi/admin/strapi-admin';
-import { Box, Button, Checkbox, Table, Th, Thead, Tr } from '@strapi/design-system';
+import {
+  Box,
+  Button,
+  Checkbox,
+  Field,
+  Flex,
+  SingleSelect,
+  SingleSelectOption,
+  Table,
+  Th,
+  Thead,
+  Tr,
+} from '@strapi/design-system';
 import { List } from '@strapi/icons';
 import { Reorder } from 'framer-motion';
 import { MouseEvent, useEffect, useState } from 'react';
@@ -27,6 +39,9 @@ const StyledTable = styled(Table)`
   & tr {
     border-bottom: 1px solid rgb(50, 50, 77);
   }
+`;
+const StyledSelectBox = styled(Box)`
+  width: 100px;
 `;
 
 const StyledTh = styled(Th)`
@@ -74,23 +89,24 @@ const ShowManager = () => {
     fetchShows();
   }, [get]);
 
-  const handleSaveOrder = async (e: MouseEvent<HTMLButtonElement>) => {
+  const handleSave = async (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
-    const showOrder: { show_id: string; order: number }[] = [];
+    const showOrder: { show_id: string; order: number; Active: number }[] = [];
 
     shows.forEach((show, index) => {
       showOrder.push({
         show_id: show.show_id,
         order: index + 1,
+        Active: show.Active,
       });
     });
+    setSaveOrder('Saving...');
 
-    console.log('submitting...', showOrder);
-    setSaveOrder('Order Saving...');
+    const api = '/showcase-management/show-order';
 
     try {
-      const { data } = await post('/showcase-management/show-order', showOrder);
+      const { data } = await post(api, showOrder);
       setSaveOrder('Saved');
       await fetchShows();
       setTimeout(() => {
@@ -101,17 +117,44 @@ const ShowManager = () => {
     }
   };
 
+  // Handle bulk select
+  const handleBulkSelect = (isChecked: boolean) => {
+    setShows((prevShows) =>
+      prevShows.map((show) => ({
+        ...show,
+        Active: isChecked ? 1 : 0,
+      }))
+    );
+  };
+
+  const handleCheckboxChange = (showId: string, isChecked: boolean) => {
+    setShows((prevShows) =>
+      prevShows.map((show) =>
+        show.show_id === showId ? { ...show, Active: isChecked ? 1 : 0 } : show
+      )
+    );
+  };
+
   return (
     <Container>
       <Title>Showcase Management</Title>
-      <Box paddingBottom={6}>
-        <Button onClick={handleSaveOrder}>Save Order</Button>
-        {saveOrder && (
-          <Box paddingTop={4}>
-            <p>{saveOrder}</p>
-          </Box>
-        )}
-      </Box>
+      <Flex paddingBottom={6}>
+        <StyledSelectBox>
+          <Field.Label>Select Action</Field.Label>
+          <SingleSelect>
+            <SingleSelectOption value="Order">Order</SingleSelectOption>
+            <SingleSelectOption value="Activate">Activate</SingleSelectOption>
+          </SingleSelect>
+        </StyledSelectBox>
+        <Box paddingTop={4} paddingLeft={4}>
+          <Button onClick={handleSave}>Apply</Button>
+          {saveOrder && (
+            <Box paddingTop={4}>
+              <p>{saveOrder}</p>
+            </Box>
+          )}
+        </Box>
+      </Flex>
       <Box>
         <StyledTable>
           <Thead>
@@ -120,7 +163,10 @@ const ShowManager = () => {
                 <List fill="currentcolor" />
               </StyledTh>
               <StyledTh>
-                <Checkbox aria-label="Select all entries" />
+                <Checkbox
+                  aria-label="Select all entries"
+                  onCheckedChange={(isChecked: boolean) => handleBulkSelect(isChecked)}
+                />
               </StyledTh>
               <StyledTh>Active</StyledTh>
               <StyledTh>Title</StyledTh>
@@ -132,7 +178,7 @@ const ShowManager = () => {
           </Thead>
           <Reorder.Group axis="y" as="tbody" values={shows} onReorder={setShows}>
             {shows.map((show) => (
-              <ShowItem key={show.show_id} show={show} />
+              <ShowItem key={show.show_id} show={show} onCheckboxChange={handleCheckboxChange} />
             ))}
           </Reorder.Group>
         </StyledTable>

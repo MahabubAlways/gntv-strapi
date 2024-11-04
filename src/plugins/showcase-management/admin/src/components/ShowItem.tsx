@@ -30,14 +30,13 @@ interface Show {
 
 interface IProps {
   show: Show;
+  onCheckboxChange: (showId: string, isChecked: boolean) => void;
 }
 
-const ShowItem = ({ show }: IProps) => {
+const ShowItem = ({ show, onCheckboxChange }: IProps) => {
   const y = useMotionValue(0);
   const boxShadow = useRaisedShadow(y);
   const dragControls = useDragControls();
-
-  const active = true;
 
   return (
     <Reorder.Item
@@ -52,7 +51,11 @@ const ShowItem = ({ show }: IProps) => {
         <StyledDrag fill="currentcolor" onPointerDown={(e) => dragControls.start(e)} />
       </StyledTd>
       <StyledTd>
-        <Checkbox aria-label="Select all entries" />
+        <Checkbox
+          aria-label="Select show"
+          checked={show.Active === 1 ? true : false}
+          onCheckedChange={(isChecked: boolean) => onCheckboxChange(show.show_id, isChecked)}
+        />
       </StyledTd>
       <StyledTd>{show.Active == 0 ? 'False' : 'True'}</StyledTd>
       <StyledTd>{show.show_title}</StyledTd>

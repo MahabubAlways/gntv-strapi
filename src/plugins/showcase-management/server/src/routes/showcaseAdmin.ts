@@ -18,4 +18,13 @@ export default [
       auth: false,
     },
   },
+  {
+    method: 'POST',
+    path: '/show-order',
+    handler: 'postShowActive.showActive',
+    config: {
+      policies: [],
+      auth: false,
+    },
+  },
 ];
