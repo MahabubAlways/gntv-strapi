@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_home_experiences",
+  "info": {
+    "displayName": "Experience",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "blocks",
+      "required": true
+    },
+    "Button": {
+      "type": "component",
+      "repeatable": true,
+      "component": "common.button"
+    },
+    "VideoURL": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

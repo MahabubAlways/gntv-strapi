@@ -554,8 +554,9 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
   attributes: {
     Title: Schema.Attribute.String;
     slug: Schema.Attribute.UID<'Title'>;
-    Desc: Schema.Attribute.Blocks;
-    Thumb: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    pageComponents: Schema.Attribute.DynamicZone<
+      ['home.hero', 'home.services', 'home.experience']
+    >;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;

@@ -6,13 +6,13 @@ const { ApplicationError } = require('@strapi/utils').errors;
 const postShowActive = ({ strapi }: { strapi: Core.Strapi }) => ({
   async showActive(ctx) {
     try {
-      const orderData = ctx.request.body;
+      const activeData = ctx.request.body;
 
-      if (!Array.isArray(orderData)) {
-        throw new ApplicationError('Invalid data: orderData must be an array');
+      if (!Array.isArray(activeData)) {
+        throw new ApplicationError('Invalid data: activeData must be an array');
       }
 
-      const updateShowsOrder = async () => {
+      const updateShowActive = async () => {
         const connection = await mysql.createConnection({
           host: '216.225.203.234',
           user: 'devdb',
@@ -21,23 +21,23 @@ const postShowActive = ({ strapi }: { strapi: Core.Strapi }) => ({
         });
 
         try {
-          const query = 'UPDATE shows SET `order` = ? WHERE show_id = ?';
+          const query = 'UPDATE shows SET `Active` = ? WHERE show_id = ?';
 
           // Run update for each show in orderData
-          for (const show of orderData) {
-            const { order, show_id } = show;
-            await connection.execute(query, [order, show_id]);
+          for (const show of activeData) {
+            const { Active, show_id } = show;
+            await connection.execute(query, [Active, show_id]);
           }
         } finally {
           await connection.end();
         }
       };
 
-      await updateShowsOrder();
+      await updateShowActive();
       ctx.body = { success: true, message: 'Order updated successfully' };
     } catch (error) {
-      console.error('Error updating show order:', error);
-      throw new ApplicationError('Failed to update show order');
+      console.error('Error updating show Active:', error);
+      throw new ApplicationError('Failed to update show Active');
     }
   },
 });
