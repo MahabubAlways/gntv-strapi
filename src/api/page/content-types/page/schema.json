@@ -27,7 +27,9 @@
         "home.experience",
         "demo.demo-event",
         "featured.featured-shows",
-        "interocitor.interocitor-device"
+        "interocitor.interocitor-device",
+        "support.support",
+        "downloads.downloads"
       ]
     }
   }

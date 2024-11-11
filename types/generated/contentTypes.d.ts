@@ -562,6 +562,8 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
         'demo.demo-event',
         'featured.featured-shows',
         'interocitor.interocitor-device',
+        'support.support',
+        'downloads.downloads',
       ]
     >;
     createdAt: Schema.Attribute.DateTime;

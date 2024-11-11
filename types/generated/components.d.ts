@@ -1,5 +1,16 @@
 import type { Struct, Schema } from '@strapi/strapi';
 
+export interface SupportSupport extends Struct.ComponentSchema {
+  collectionName: 'components_support_supports';
+  info: {
+    displayName: 'Support';
+  };
+  attributes: {
+    Title: Schema.Attribute.String;
+    description: Schema.Attribute.Blocks;
+  };
+}
+
 export interface MenuMenuItem extends Struct.ComponentSchema {
   collectionName: 'components_menu_menu_items';
   info: {
@@ -115,6 +126,30 @@ export interface FeaturedFeaturedCard extends Struct.ComponentSchema {
   };
 }
 
+export interface DownloadsDownloads extends Struct.ComponentSchema {
+  collectionName: 'components_downloads_downloads';
+  info: {
+    displayName: 'Downloads';
+    description: '';
+  };
+  attributes: {
+    Title: Schema.Attribute.String;
+    DownloadItem: Schema.Attribute.Component<'downloads.download-item', true>;
+    description: Schema.Attribute.Blocks;
+  };
+}
+
+export interface DownloadsDownloadItem extends Struct.ComponentSchema {
+  collectionName: 'components_downloads_download_items';
+  info: {
+    displayName: 'DownloadItem';
+  };
+  attributes: {
+    text: Schema.Attribute.String;
+    Button: Schema.Attribute.Component<'common.button', false>;
+  };
+}
+
 export interface DemoDemoEvent extends Struct.ComponentSchema {
   collectionName: 'components_demo_demo_events';
   info: {
@@ -142,6 +177,7 @@ export interface CommonButton extends Struct.ComponentSchema {
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'support.support': SupportSupport;
       'menu.menu-item': MenuMenuItem;
       'menu.child-menu-item': MenuChildMenuItem;
       'interocitor.interocitor-device': InterocitorInterocitorDevice;
@@ -151,6 +187,8 @@ declare module '@strapi/strapi' {
       'home.experience': HomeExperience;
       'featured.featured-shows': FeaturedFeaturedShows;
       'featured.featured-card': FeaturedFeaturedCard;
+      'downloads.downloads': DownloadsDownloads;
+      'downloads.download-item': DownloadsDownloadItem;
       'demo.demo-event': DemoDemoEvent;
       'common.button': CommonButton;
     }

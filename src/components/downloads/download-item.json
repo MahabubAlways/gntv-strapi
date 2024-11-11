@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_downloads_download_items",
+  "info": {
+    "displayName": "DownloadItem"
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "string"
+    },
+    "Button": {
+      "type": "component",
+      "repeatable": false,
+      "component": "common.button"
+    }
+  }
+}

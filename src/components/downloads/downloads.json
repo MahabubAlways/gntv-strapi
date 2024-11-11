@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_downloads_downloads",
+  "info": {
+    "displayName": "Downloads",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "DownloadItem": {
+      "displayName": "DownloadItem",
+      "type": "component",
+      "repeatable": true,
+      "component": "downloads.download-item"
+    },
+    "description": {
+      "type": "blocks"
+    }
+  }
+}
