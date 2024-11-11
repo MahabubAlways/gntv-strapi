@@ -24,7 +24,10 @@
       "components": [
         "home.hero",
         "home.services",
-        "home.experience"
+        "home.experience",
+        "demo.demo-event",
+        "featured.featured-shows",
+        "interocitor.interocitor-device"
       ]
     }
   }

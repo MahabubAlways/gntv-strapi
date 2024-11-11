@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_featured_featured_shows",
+  "info": {
+    "displayName": "featuredShows"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "featuredCard": {
+      "displayName": "featuredCard",
+      "type": "component",
+      "repeatable": true,
+      "component": "featured.featured-card"
+    }
+  }
+}

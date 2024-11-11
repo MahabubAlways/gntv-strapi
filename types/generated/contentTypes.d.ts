@@ -555,7 +555,14 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
     Title: Schema.Attribute.String;
     slug: Schema.Attribute.UID<'Title'>;
     pageComponents: Schema.Attribute.DynamicZone<
-      ['home.hero', 'home.services', 'home.experience']
+      [
+        'home.hero',
+        'home.services',
+        'home.experience',
+        'demo.demo-event',
+        'featured.featured-shows',
+        'interocitor.interocitor-device',
+      ]
     >;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;

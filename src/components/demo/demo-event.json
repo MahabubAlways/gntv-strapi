@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_demo_demo_events",
+  "info": {
+    "displayName": "demoEvent"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "VideoURL": {
+      "type": "string"
+    }
+  }
+}

@@ -29,6 +29,19 @@ export interface MenuChildMenuItem extends Struct.ComponentSchema {
   };
 }
 
+export interface InterocitorInterocitorDevice extends Struct.ComponentSchema {
+  collectionName: 'components_interocitor_interocitor_devices';
+  info: {
+    displayName: 'InterocitorDevice';
+  };
+  attributes: {
+    Title: Schema.Attribute.String;
+    description: Schema.Attribute.Blocks;
+    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    Button: Schema.Attribute.Component<'common.button', true>;
+  };
+}
+
 export interface HomeServices extends Struct.ComponentSchema {
   collectionName: 'components_home_services';
   info: {
@@ -79,6 +92,41 @@ export interface HomeExperience extends Struct.ComponentSchema {
   };
 }
 
+export interface FeaturedFeaturedShows extends Struct.ComponentSchema {
+  collectionName: 'components_featured_featured_shows';
+  info: {
+    displayName: 'featuredShows';
+  };
+  attributes: {
+    Title: Schema.Attribute.String;
+    featuredCard: Schema.Attribute.Component<'featured.featured-card', true>;
+  };
+}
+
+export interface FeaturedFeaturedCard extends Struct.ComponentSchema {
+  collectionName: 'components_featured_featured_cards';
+  info: {
+    displayName: 'featuredCard';
+  };
+  attributes: {
+    Title: Schema.Attribute.String;
+    description: Schema.Attribute.Text;
+    VideoURL: Schema.Attribute.String;
+  };
+}
+
+export interface DemoDemoEvent extends Struct.ComponentSchema {
+  collectionName: 'components_demo_demo_events';
+  info: {
+    displayName: 'demoEvent';
+  };
+  attributes: {
+    Title: Schema.Attribute.String;
+    description: Schema.Attribute.Text;
+    VideoURL: Schema.Attribute.String;
+  };
+}
+
 export interface CommonButton extends Struct.ComponentSchema {
   collectionName: 'components_common_buttons';
   info: {
@@ -96,10 +144,14 @@ declare module '@strapi/strapi' {
     export interface ComponentSchemas {
       'menu.menu-item': MenuMenuItem;
       'menu.child-menu-item': MenuChildMenuItem;
+      'interocitor.interocitor-device': InterocitorInterocitorDevice;
       'home.services': HomeServices;
       'home.service-card': HomeServiceCard;
       'home.hero': HomeHero;
       'home.experience': HomeExperience;
+      'featured.featured-shows': FeaturedFeaturedShows;
+      'featured.featured-card': FeaturedFeaturedCard;
+      'demo.demo-event': DemoDemoEvent;
       'common.button': CommonButton;
     }
   }

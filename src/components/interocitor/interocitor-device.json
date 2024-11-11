@@ -1,0 +1,30 @@
+{
+  "collectionName": "components_interocitor_interocitor_devices",
+  "info": {
+    "displayName": "InterocitorDevice"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "blocks"
+    },
+    "image": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "Button": {
+      "type": "component",
+      "repeatable": true,
+      "component": "common.button"
+    }
+  }
+}
