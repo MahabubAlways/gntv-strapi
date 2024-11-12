@@ -20,8 +20,17 @@ export default [
   },
   {
     method: 'POST',
-    path: '/show-order',
+    path: '/show-active',
     handler: 'postShowActive.showActive',
+    config: {
+      policies: [],
+      auth: false,
+    },
+  },
+  {
+    method: 'POST',
+    path: '/show-update',
+    handler: 'postShowUpdate.showUpdate',
     config: {
       policies: [],
       auth: false,

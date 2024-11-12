@@ -34,7 +34,7 @@ const postShowActive = ({ strapi }: { strapi: Core.Strapi }) => ({
       };
 
       await updateShowActive();
-      ctx.body = { success: true, message: 'Order updated successfully' };
+      ctx.body = { success: true, message: 'Active updated successfully' };
     } catch (error) {
       console.error('Error updating show Active:', error);
       throw new ApplicationError('Failed to update show Active');

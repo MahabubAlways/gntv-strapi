@@ -1,6 +1,7 @@
 import { Checkbox, Td } from '@strapi/design-system';
 import { Drag } from '@strapi/icons';
 import { Reorder, useDragControls, useMotionValue } from 'framer-motion';
+import { useState } from 'react';
 import styled from 'styled-components';
 import UpdateModal from './UpdateModal';
 import { useRaisedShadow } from './use-shadow';
@@ -38,6 +39,14 @@ const ShowItem = ({ show, onCheckboxChange }: IProps) => {
   const boxShadow = useRaisedShadow(y);
   const dragControls = useDragControls();
 
+  const [formData, setFormData] = useState({
+    show_title: show.show_title,
+    show_creator: show.show_creator,
+    show_description: show.show_description,
+    thumbnail_url: show.thumbnail_url,
+    show_id: show.show_id,
+  });
+
   return (
     <Reorder.Item
       value={show}
@@ -69,11 +78,7 @@ const ShowItem = ({ show, onCheckboxChange }: IProps) => {
         )}
       </StyledTd>
       <StyledTd>
-        <UpdateModal
-          title={show.show_title}
-          creator={show.show_creator}
-          desc={show.show_description}
-        />
+        <UpdateModal formData={formData} setFormData={setFormData} />
       </StyledTd>
     </Reorder.Item>
   );
