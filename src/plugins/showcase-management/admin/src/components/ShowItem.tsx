@@ -32,9 +32,10 @@ interface Show {
 interface IProps {
   show: Show;
   onCheckboxChange: (showId: string, isChecked: boolean) => void;
+  fetchShows: () => Promise<void>;
 }
 
-const ShowItem = ({ show, onCheckboxChange }: IProps) => {
+const ShowItem = ({ show, onCheckboxChange, fetchShows }: IProps) => {
   const y = useMotionValue(0);
   const boxShadow = useRaisedShadow(y);
   const dragControls = useDragControls();
@@ -78,7 +79,7 @@ const ShowItem = ({ show, onCheckboxChange }: IProps) => {
         )}
       </StyledTd>
       <StyledTd>
-        <UpdateModal formData={formData} setFormData={setFormData} />
+        <UpdateModal formData={formData} setFormData={setFormData} fetchShows={fetchShows} />
       </StyledTd>
     </Reorder.Item>
   );

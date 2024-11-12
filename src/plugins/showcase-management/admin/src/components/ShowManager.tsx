@@ -74,7 +74,8 @@ interface Show {
 
 const ShowManager = () => {
   const [shows, setShows] = useState<Show[]>([]);
-  const [saveOrder, setSaveOrder] = useState<null | string>(null);
+  const [apply, setApply] = useState<null | string>(null);
+  const [action, setAction] = useState<string | null>(null);
   const { get, post } = useFetchClient();
 
   const fetchShows = async () => {
@@ -101,16 +102,26 @@ const ShowManager = () => {
         Active: show.Active,
       });
     });
-    setSaveOrder('Saving...');
 
-    const api = '/showcase-management/show-order';
+    if (!action) {
+      setApply('Please Select a Save Action!');
+      return;
+    }
 
+    const api =
+      action === 'Order'
+        ? '/showcase-management/show-order'
+        : action === 'Activate'
+          ? '/showcase-management/show-active'
+          : '';
+
+    setApply('Saving...');
     try {
       const { data } = await post(api, showOrder);
-      setSaveOrder('Saved');
+      setApply('Saved');
       await fetchShows();
       setTimeout(() => {
-        setSaveOrder(null);
+        setApply(null);
       }, 1500);
     } catch (error) {
       console.error('Error:', error);
@@ -141,19 +152,25 @@ const ShowManager = () => {
       <Flex paddingBottom={6}>
         <StyledSelectBox>
           <Field.Label>Select Action</Field.Label>
-          <SingleSelect>
+          <SingleSelect
+            onClear={() => {
+              setAction(null);
+            }}
+            value={action}
+            onChange={setAction}
+          >
             <SingleSelectOption value="Order">Order</SingleSelectOption>
             <SingleSelectOption value="Activate">Activate</SingleSelectOption>
           </SingleSelect>
         </StyledSelectBox>
         <Box paddingTop={4} paddingLeft={4}>
           <Button onClick={handleSave}>Apply</Button>
-          {saveOrder && (
-            <Box paddingTop={4}>
-              <p>{saveOrder}</p>
-            </Box>
-          )}
         </Box>
+        {apply && (
+          <Box paddingTop={4} paddingLeft={4}>
+            <p>{apply}</p>
+          </Box>
+        )}
       </Flex>
       <Box>
         <StyledTable>
@@ -178,7 +195,12 @@ const ShowManager = () => {
           </Thead>
           <Reorder.Group axis="y" as="tbody" values={shows} onReorder={setShows}>
             {shows.map((show) => (
-              <ShowItem key={show.show_id} show={show} onCheckboxChange={handleCheckboxChange} />
+              <ShowItem
+                key={show.show_id}
+                show={show}
+                onCheckboxChange={handleCheckboxChange}
+                fetchShows={fetchShows}
+              />
             ))}
           </Reorder.Group>
         </StyledTable>
