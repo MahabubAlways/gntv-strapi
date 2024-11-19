@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_footer_footer_titles",
+  "info": {
+    "displayName": "footerTitle"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "titleSpan": {
+      "type": "string"
+    },
+    "URI": {
+      "type": "string"
+    }
+  }
+}

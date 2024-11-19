@@ -501,6 +501,7 @@ export interface ApiFooterFooter extends Struct.SingleTypeSchema {
     footersubbody: Schema.Attribute.Blocks;
     NewsletterTitle: Schema.Attribute.String;
     NewsletterDesc: Schema.Attribute.String;
+    footertitle: Schema.Attribute.Component<'footer.footer-title', false>;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;

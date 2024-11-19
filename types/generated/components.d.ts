@@ -103,6 +103,18 @@ export interface HomeExperience extends Struct.ComponentSchema {
   };
 }
 
+export interface FooterFooterTitle extends Struct.ComponentSchema {
+  collectionName: 'components_footer_footer_titles';
+  info: {
+    displayName: 'footerTitle';
+  };
+  attributes: {
+    Title: Schema.Attribute.String;
+    titleSpan: Schema.Attribute.String;
+    URI: Schema.Attribute.String;
+  };
+}
+
 export interface FeaturedFeaturedShows extends Struct.ComponentSchema {
   collectionName: 'components_featured_featured_shows';
   info: {
@@ -185,6 +197,7 @@ declare module '@strapi/strapi' {
       'home.service-card': HomeServiceCard;
       'home.hero': HomeHero;
       'home.experience': HomeExperience;
+      'footer.footer-title': FooterFooterTitle;
       'featured.featured-shows': FeaturedFeaturedShows;
       'featured.featured-card': FeaturedFeaturedCard;
       'downloads.downloads': DownloadsDownloads;

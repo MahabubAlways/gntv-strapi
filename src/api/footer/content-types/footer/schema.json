@@ -23,6 +23,12 @@
     },
     "NewsletterDesc": {
       "type": "string"
+    },
+    "footertitle": {
+      "displayName": "footerTitle",
+      "type": "component",
+      "repeatable": false,
+      "component": "footer.footer-title"
     }
   }
 }
