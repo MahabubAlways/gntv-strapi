@@ -4,16 +4,17 @@
   "private": true,
   "description": "A Strapi application",
   "scripts": {
-    "build": "strapi build",
+    "build": "NODE_OPTIONS='--max-old-space-size=4096' strapi build",
     "deploy": "strapi deploy",
     "develop": "strapi develop --watch-admin",
     "start": "strapi start",
     "strapi": "strapi"
   },
   "dependencies": {
-    "@strapi/plugin-cloud": "5.0.4",
-    "@strapi/plugin-users-permissions": "5.0.4",
-    "@strapi/strapi": "5.0.4",
+    "@strapi/plugin-cloud": "5.4.0",
+    "@strapi/plugin-seo": "^2.0.4",
+    "@strapi/plugin-users-permissions": "5.4.0",
+    "@strapi/strapi": "5.4.0",
     "better-sqlite3": "11.3.0",
     "framer-motion": "^11.11.11",
     "mysql2": "^3.11.3",

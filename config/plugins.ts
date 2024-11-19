@@ -3,4 +3,7 @@ export default () => ({
     enabled: true,
     resolve: "./src/plugins/showcase-management",
   },
+  seo: {
+    enabled: true,
+  },
 });

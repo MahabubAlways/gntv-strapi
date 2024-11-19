@@ -1,105 +1,73 @@
-import type { Struct, Schema } from '@strapi/strapi';
+import type { Schema, Struct } from '@strapi/strapi';
 
-export interface SupportSupport extends Struct.ComponentSchema {
-  collectionName: 'components_support_supports';
+export interface CommonButton extends Struct.ComponentSchema {
+  collectionName: 'components_common_buttons';
   info: {
-    displayName: 'Support';
-  };
-  attributes: {
-    Title: Schema.Attribute.String;
-    description: Schema.Attribute.Blocks;
-  };
-}
-
-export interface MenuMenuItem extends Struct.ComponentSchema {
-  collectionName: 'components_menu_menu_items';
-  info: {
-    displayName: 'MenuItem';
-    icon: 'bulletList';
-    description: '';
+    displayName: 'Button';
   };
   attributes: {
     Label: Schema.Attribute.String;
+    Target_blank: Schema.Attribute.Boolean;
     URI: Schema.Attribute.String;
-    IsExternal: Schema.Attribute.Boolean;
-    children: Schema.Attribute.Component<'menu.child-menu-item', true>;
   };
 }
 
-export interface MenuChildMenuItem extends Struct.ComponentSchema {
-  collectionName: 'components_menu_child_menu_items';
+export interface DemoDemoEvent extends Struct.ComponentSchema {
+  collectionName: 'components_demo_demo_events';
   info: {
-    displayName: 'children';
-    icon: 'bulletList';
-    description: '';
+    displayName: 'demoEvent';
   };
   attributes: {
-    Label: Schema.Attribute.String;
-    URI: Schema.Attribute.String;
-    IsExternal: Schema.Attribute.Boolean;
-  };
-}
-
-export interface InterocitorInterocitorDevice extends Struct.ComponentSchema {
-  collectionName: 'components_interocitor_interocitor_devices';
-  info: {
-    displayName: 'InterocitorDevice';
-  };
-  attributes: {
-    Title: Schema.Attribute.String;
-    description: Schema.Attribute.Blocks;
-    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    Button: Schema.Attribute.Component<'common.button', true>;
-  };
-}
-
-export interface HomeServices extends Struct.ComponentSchema {
-  collectionName: 'components_home_services';
-  info: {
-    displayName: 'Services';
-  };
-  attributes: {
-    Service: Schema.Attribute.Component<'home.service-card', true>;
-  };
-}
-
-export interface HomeServiceCard extends Struct.ComponentSchema {
-  collectionName: 'components_home_service_cards';
-  info: {
-    displayName: 'serviceCard';
-    description: '';
-  };
-  attributes: {
-    Title: Schema.Attribute.String;
-    subTitle: Schema.Attribute.String;
     description: Schema.Attribute.Text;
-    Icon: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-  };
-}
-
-export interface HomeHero extends Struct.ComponentSchema {
-  collectionName: 'components_home_heroes';
-  info: {
-    displayName: 'Hero';
-  };
-  attributes: {
     Title: Schema.Attribute.String;
-    Description: Schema.Attribute.Blocks;
-    Button: Schema.Attribute.Component<'common.button', true>;
+    VideoURL: Schema.Attribute.String;
   };
 }
 
-export interface HomeExperience extends Struct.ComponentSchema {
-  collectionName: 'components_home_experiences';
+export interface DownloadsDownloadItem extends Struct.ComponentSchema {
+  collectionName: 'components_downloads_download_items';
   info: {
-    displayName: 'Experience';
-    description: '';
+    displayName: 'DownloadItem';
   };
   attributes: {
-    Title: Schema.Attribute.String & Schema.Attribute.Required;
-    description: Schema.Attribute.Blocks & Schema.Attribute.Required;
-    Button: Schema.Attribute.Component<'common.button', true>;
-    VideoURL: Schema.Attribute.String & Schema.Attribute.Required;
+    Button: Schema.Attribute.Component<'common.button', false>;
+    text: Schema.Attribute.String;
+  };
+}
+
+export interface DownloadsDownloads extends Struct.ComponentSchema {
+  collectionName: 'components_downloads_downloads';
+  info: {
+    description: '';
+    displayName: 'Downloads';
+  };
+  attributes: {
+    description: Schema.Attribute.Blocks;
+    DownloadItem: Schema.Attribute.Component<'downloads.download-item', true>;
+    Title: Schema.Attribute.String;
+  };
+}
+
+export interface FeaturedFeaturedCard extends Struct.ComponentSchema {
+  collectionName: 'components_featured_featured_cards';
+  info: {
+    displayName: 'featuredCard';
+  };
+  attributes: {
+    description: Schema.Attribute.Text;
+    Title: Schema.Attribute.String;
+    VideoURL: Schema.Attribute.String;
+  };
+}
+
+export interface FeaturedFeaturedShows extends Struct.ComponentSchema {
+  collectionName: 'components_featured_featured_shows';
+  info: {
+    displayName: 'featuredShows';
+  };
+  attributes: {
+    featuredCard: Schema.Attribute.Component<'featured.featured-card', true>;
+    Title: Schema.Attribute.String;
   };
 }
 
@@ -115,95 +83,127 @@ export interface FooterFooterTitle extends Struct.ComponentSchema {
   };
 }
 
-export interface FeaturedFeaturedShows extends Struct.ComponentSchema {
-  collectionName: 'components_featured_featured_shows';
+export interface HomeExperience extends Struct.ComponentSchema {
+  collectionName: 'components_home_experiences';
   info: {
-    displayName: 'featuredShows';
-  };
-  attributes: {
-    Title: Schema.Attribute.String;
-    featuredCard: Schema.Attribute.Component<'featured.featured-card', true>;
-  };
-}
-
-export interface FeaturedFeaturedCard extends Struct.ComponentSchema {
-  collectionName: 'components_featured_featured_cards';
-  info: {
-    displayName: 'featuredCard';
-  };
-  attributes: {
-    Title: Schema.Attribute.String;
-    description: Schema.Attribute.Text;
-    VideoURL: Schema.Attribute.String;
-  };
-}
-
-export interface DownloadsDownloads extends Struct.ComponentSchema {
-  collectionName: 'components_downloads_downloads';
-  info: {
-    displayName: 'Downloads';
     description: '';
+    displayName: 'Experience';
   };
   attributes: {
-    Title: Schema.Attribute.String;
-    DownloadItem: Schema.Attribute.Component<'downloads.download-item', true>;
-    description: Schema.Attribute.Blocks;
+    Button: Schema.Attribute.Component<'common.button', true>;
+    description: Schema.Attribute.Blocks & Schema.Attribute.Required;
+    Title: Schema.Attribute.String & Schema.Attribute.Required;
+    VideoURL: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
-export interface DownloadsDownloadItem extends Struct.ComponentSchema {
-  collectionName: 'components_downloads_download_items';
+export interface HomeHero extends Struct.ComponentSchema {
+  collectionName: 'components_home_heroes';
   info: {
-    displayName: 'DownloadItem';
+    displayName: 'Hero';
   };
   attributes: {
-    text: Schema.Attribute.String;
-    Button: Schema.Attribute.Component<'common.button', false>;
+    Button: Schema.Attribute.Component<'common.button', true>;
+    Description: Schema.Attribute.Blocks;
+    Title: Schema.Attribute.String;
   };
 }
 
-export interface DemoDemoEvent extends Struct.ComponentSchema {
-  collectionName: 'components_demo_demo_events';
+export interface HomeServiceCard extends Struct.ComponentSchema {
+  collectionName: 'components_home_service_cards';
   info: {
-    displayName: 'demoEvent';
+    description: '';
+    displayName: 'serviceCard';
   };
   attributes: {
-    Title: Schema.Attribute.String;
     description: Schema.Attribute.Text;
-    VideoURL: Schema.Attribute.String;
+    Icon: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    subTitle: Schema.Attribute.String;
+    Title: Schema.Attribute.String;
   };
 }
 
-export interface CommonButton extends Struct.ComponentSchema {
-  collectionName: 'components_common_buttons';
+export interface HomeServices extends Struct.ComponentSchema {
+  collectionName: 'components_home_services';
   info: {
-    displayName: 'Button';
+    displayName: 'Services';
   };
   attributes: {
-    URI: Schema.Attribute.String;
+    Service: Schema.Attribute.Component<'home.service-card', true>;
+  };
+}
+
+export interface InterocitorInterocitorDevice extends Struct.ComponentSchema {
+  collectionName: 'components_interocitor_interocitor_devices';
+  info: {
+    displayName: 'InterocitorDevice';
+  };
+  attributes: {
+    Button: Schema.Attribute.Component<'common.button', true>;
+    description: Schema.Attribute.Blocks;
+    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    Title: Schema.Attribute.String;
+  };
+}
+
+export interface MenuChildMenuItem extends Struct.ComponentSchema {
+  collectionName: 'components_menu_child_menu_items';
+  info: {
+    description: '';
+    displayName: 'children';
+    icon: 'bulletList';
+  };
+  attributes: {
+    IsExternal: Schema.Attribute.Boolean;
     Label: Schema.Attribute.String;
-    Target_blank: Schema.Attribute.Boolean;
+    URI: Schema.Attribute.String;
+  };
+}
+
+export interface MenuMenuItem extends Struct.ComponentSchema {
+  collectionName: 'components_menu_menu_items';
+  info: {
+    description: '';
+    displayName: 'MenuItem';
+    icon: 'bulletList';
+  };
+  attributes: {
+    children: Schema.Attribute.Component<'menu.child-menu-item', true>;
+    IsExternal: Schema.Attribute.Boolean;
+    Label: Schema.Attribute.String;
+    URI: Schema.Attribute.String;
+  };
+}
+
+export interface SupportSupport extends Struct.ComponentSchema {
+  collectionName: 'components_support_supports';
+  info: {
+    displayName: 'Support';
+  };
+  attributes: {
+    description: Schema.Attribute.Blocks;
+    Title: Schema.Attribute.String;
   };
 }
 
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
-      'support.support': SupportSupport;
-      'menu.menu-item': MenuMenuItem;
-      'menu.child-menu-item': MenuChildMenuItem;
-      'interocitor.interocitor-device': InterocitorInterocitorDevice;
-      'home.services': HomeServices;
-      'home.service-card': HomeServiceCard;
-      'home.hero': HomeHero;
-      'home.experience': HomeExperience;
-      'footer.footer-title': FooterFooterTitle;
-      'featured.featured-shows': FeaturedFeaturedShows;
-      'featured.featured-card': FeaturedFeaturedCard;
-      'downloads.downloads': DownloadsDownloads;
-      'downloads.download-item': DownloadsDownloadItem;
-      'demo.demo-event': DemoDemoEvent;
       'common.button': CommonButton;
+      'demo.demo-event': DemoDemoEvent;
+      'downloads.download-item': DownloadsDownloadItem;
+      'downloads.downloads': DownloadsDownloads;
+      'featured.featured-card': FeaturedFeaturedCard;
+      'featured.featured-shows': FeaturedFeaturedShows;
+      'footer.footer-title': FooterFooterTitle;
+      'home.experience': HomeExperience;
+      'home.hero': HomeHero;
+      'home.service-card': HomeServiceCard;
+      'home.services': HomeServices;
+      'interocitor.interocitor-device': InterocitorInterocitorDevice;
+      'menu.child-menu-item': MenuChildMenuItem;
+      'menu.menu-item': MenuMenuItem;
+      'support.support': SupportSupport;
     }
   }
 }
