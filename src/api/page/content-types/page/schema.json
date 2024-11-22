@@ -29,7 +29,8 @@
         "featured.featured-shows",
         "interocitor.interocitor-device",
         "support.support",
-        "downloads.downloads"
+        "downloads.downloads",
+        "features.features"
       ]
     },
     "seo": {

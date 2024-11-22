@@ -1,0 +1,30 @@
+{
+  "collectionName": "components_features_features",
+  "info": {
+    "displayName": "features"
+  },
+  "options": {},
+  "attributes": {
+    "sectionBG": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "Title": {
+      "type": "component",
+      "repeatable": false,
+      "component": "common.page-title"
+    },
+    "featuresCard": {
+      "displayName": "featuresCard",
+      "type": "component",
+      "repeatable": true,
+      "component": "features.features-card"
+    }
+  }
+}

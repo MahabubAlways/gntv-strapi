@@ -1,0 +1,12 @@
+{
+  "collectionName": "components_features_features_cards",
+  "info": {
+    "displayName": "featuresCard"
+  },
+  "options": {},
+  "attributes": {
+    "featuresCard": {
+      "type": "blocks"
+    }
+  }
+}

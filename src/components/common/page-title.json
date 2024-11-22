@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_common_page_titles",
+  "info": {
+    "displayName": "pageTitle"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "subTitle": {
+      "type": "string"
+    }
+  }
+}
