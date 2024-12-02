@@ -5,6 +5,7 @@ import { ChangeEvent, Dispatch, FormEvent, MouseEvent, SetStateAction, useState 
 import SelectImage from './SelectImage';
 
 interface FormData {
+  show_video_url: string;
   show_title: string;
   show_creator: string;
   show_description: string;
@@ -80,7 +81,7 @@ function UpdateModal({ formData, setFormData, fetchShows }: show) {
                 />
               </Field.Root>
             </Box>
-            <Box paddingTop={3}>
+            <Box paddingTop={2}>
               <Field.Root name="creator" required>
                 <Field.Label>Creator</Field.Label>
                 <Field.Input
@@ -90,7 +91,7 @@ function UpdateModal({ formData, setFormData, fetchShows }: show) {
                 />
               </Field.Root>
             </Box>
-            <Box paddingTop={3}>
+            <Box paddingTop={2}>
               <Field.Root name="description" required>
                 <Field.Label>Description</Field.Label>
                 <Field.Input
@@ -100,7 +101,17 @@ function UpdateModal({ formData, setFormData, fetchShows }: show) {
                 />
               </Field.Root>
             </Box>
-            <Box paddingTop={3}>
+            <Box paddingTop={2}>
+              <Field.Root name="video_url">
+                <Field.Label>Show Video URL</Field.Label>
+                <Field.Input
+                  name="show_video_url"
+                  defaultValue={formData.show_video_url}
+                  onChange={handleChange}
+                />
+              </Field.Root>
+            </Box>
+            <Box paddingTop={2}>
               <SelectImage formData={formData} setFormData={setFormData} />
             </Box>
           </Modal.Body>
@@ -109,7 +120,7 @@ function UpdateModal({ formData, setFormData, fetchShows }: show) {
               <Button variant="tertiary">Cancel</Button>
             </Modal.Close>
             {saveShow && (
-              <Box paddingTop={4}>
+              <Box paddingTop={2}>
                 <p>{saveShow}</p>
               </Box>
             )}

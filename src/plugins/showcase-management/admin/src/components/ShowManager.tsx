@@ -68,6 +68,7 @@ interface Show {
   show_title: string;
   show_creator: string;
   show_description: string;
+  show_video_url: string;
   thumbnail_url: string;
   order: number;
 }

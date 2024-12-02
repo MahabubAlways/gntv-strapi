@@ -15,7 +15,7 @@ const getShowsController = ({ strapi }: { strapi: Core.Strapi }) => ({
         });
         try {
           const [rows] = await connection.execute(
-            'SELECT show_id, Active, show_title, show_creator, show_description, thumbnail_url, `order` FROM shows ORDER BY `order` ASC'
+            'SELECT show_id, Active, show_title, show_creator, show_description, show_video_url, thumbnail_url, `order` FROM shows ORDER BY `order` ASC'
           );
           return rows;
         } finally {
@@ -41,7 +41,7 @@ const getShowsController = ({ strapi }: { strapi: Core.Strapi }) => ({
         });
         try {
           const [rows] = await connection.execute(
-            'SELECT show_title, show_description, thumbnail_url, show_creator FROM shows WHERE Active = TRUE ORDER BY `order` ASC'
+            'SELECT show_title, show_description, show_video_url, thumbnail_url, show_creator FROM shows WHERE Active = TRUE ORDER BY `order` ASC'
           );
           return rows;
         } finally {

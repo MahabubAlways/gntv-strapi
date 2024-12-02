@@ -4,6 +4,7 @@ import mysql from 'mysql2/promise';
 const { ApplicationError } = require('@strapi/utils').errors;
 
 interface ShowData {
+  show_video_url: string;
   show_title: string;
   show_creator: string;
   show_description: string;
@@ -26,13 +27,14 @@ const postShowUpdate = ({ strapi }: { strapi: Core.Strapi }) => ({
 
         try {
           const query =
-            'UPDATE shows SET show_title = ?, show_creator = ?, show_description = ?, thumbnail_url = ? WHERE show_id = ?';
+            'UPDATE shows SET show_title = ?, show_creator = ?, show_description = ?, show_video_url = ?, thumbnail_url = ? WHERE show_id = ?';
 
           // Run update for each show in showData
           await connection.execute(query, [
             showData.show_title,
             showData.show_creator,
             showData.show_description,
+            showData.show_video_url,
             showData.thumbnail_url,
             showData.show_id,
           ]);

@@ -20,6 +20,7 @@ const StyledDrag = styled(Drag)`
 `;
 
 interface Show {
+  show_video_url: string;
   show_id: string;
   Active: number;
   show_title: string;
@@ -44,6 +45,7 @@ const ShowItem = ({ show, onCheckboxChange, fetchShows }: IProps) => {
     show_title: show.show_title,
     show_creator: show.show_creator,
     show_description: show.show_description,
+    show_video_url: show.show_video_url,
     thumbnail_url: show.thumbnail_url,
     show_id: show.show_id,
   });
