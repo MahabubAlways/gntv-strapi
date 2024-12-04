@@ -10,10 +10,6 @@
       "type": "string",
       "required": true
     },
-    "description": {
-      "type": "blocks",
-      "required": true
-    },
     "Button": {
       "type": "component",
       "repeatable": true,
@@ -22,6 +18,10 @@
     "VideoURL": {
       "type": "string",
       "required": true
+    },
+    "description": {
+      "type": "customField",
+      "customField": "plugin::tinymce.tinymce"
     }
   }
 }

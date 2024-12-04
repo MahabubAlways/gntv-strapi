@@ -1,7 +1,8 @@
 {
   "collectionName": "components_support_supports",
   "info": {
-    "displayName": "Support"
+    "displayName": "Support",
+    "description": ""
   },
   "options": {},
   "attributes": {
@@ -9,7 +10,8 @@
       "type": "string"
     },
     "description": {
-      "type": "blocks"
+      "type": "customField",
+      "customField": "plugin::tinymce.tinymce"
     }
   }
 }

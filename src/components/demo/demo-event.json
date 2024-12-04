@@ -9,13 +9,10 @@
     "Title": {
       "type": "string"
     },
-    "description": {
-      "type": "text"
-    },
     "VideoURL": {
       "type": "string"
     },
-    "description2": {
+    "description": {
       "type": "customField",
       "customField": "plugin::tinymce.tinymce"
     }

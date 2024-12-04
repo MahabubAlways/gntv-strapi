@@ -11,16 +11,16 @@ export default () => ({
     config: {
       editor: {
         outputFormat: "html",
-        //tinymceSrc: "/tinymce/tinymce.min.js", // USE WITH YOUR PUBLIC PATH TO TINYMCE LIBRARY FOR USING SELF HOSTED TINYMCE
         editorConfig: {
           height: 500,
+          skin: "oxide-dark",
+          content_css: "dark",
           menubar: false,
           extended_valid_elements: "span, img, small",
           forced_root_block: "",
           convert_urls: false,
           entity_encoding: "raw",
           image_advtab: true,
-          images_upload_url: "http://localhost:4000/upload",
           plugins:
             "preview importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media codesample table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount help charmap quickbars emoticons accordion",
           toolbar:

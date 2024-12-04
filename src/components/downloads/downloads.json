@@ -16,7 +16,8 @@
       "component": "downloads.download-item"
     },
     "description": {
-      "type": "blocks"
+      "type": "customField",
+      "customField": "plugin::tinymce.tinymce"
     }
   }
 }

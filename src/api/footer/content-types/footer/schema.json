@@ -12,12 +12,6 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "footermainbody": {
-      "type": "blocks"
-    },
-    "footersubbody": {
-      "type": "blocks"
-    },
     "NewsletterTitle": {
       "type": "string"
     },
@@ -29,6 +23,14 @@
       "type": "component",
       "repeatable": false,
       "component": "footer.footer-title"
+    },
+    "footermainbody": {
+      "type": "customField",
+      "customField": "plugin::tinymce.tinymce"
+    },
+    "footersubbody": {
+      "type": "customField",
+      "customField": "plugin::tinymce.tinymce"
     }
   }
 }

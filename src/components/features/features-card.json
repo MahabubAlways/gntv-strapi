@@ -1,12 +1,14 @@
 {
   "collectionName": "components_features_features_cards",
   "info": {
-    "displayName": "featuresCard"
+    "displayName": "featuresCard",
+    "description": ""
   },
   "options": {},
   "attributes": {
     "featuresCard": {
-      "type": "blocks"
+      "type": "customField",
+      "customField": "plugin::tinymce.tinymce"
     }
   }
 }
