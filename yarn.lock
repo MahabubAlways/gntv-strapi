@@ -1751,6 +1751,17 @@
     escape-string-regexp "^2.0.0"
     lodash.deburr "^4.1.0"
 
+"@sklinet/strapi-plugin-tinymce@^1.1.4":
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/@sklinet/strapi-plugin-tinymce/-/strapi-plugin-tinymce-1.1.4.tgz#f62930a7f4dbb602079fd00d56b2910da48a3cab"
+  integrity sha512-/Z2cFh2Qd798mlGMQ9aPZnWt5D293fPLvJH3pHGRQvZNXCOuLatNSQl65VYUmg+4ZmUwNRZm+K/pICuNzQrJIA==
+  dependencies:
+    "@strapi/design-system" "^2.0.0-rc.11"
+    "@strapi/icons" "^2.0.0-rc.11"
+    "@tinymce/tinymce-react" "^5.1.1"
+    react-intl "^6.8.4"
+    tinymce-i18n "^24.10.28"
+
 "@strapi/admin@5.4.0":
   version "5.4.0"
   resolved "https://registry.yarnpkg.com/@strapi/admin/-/admin-5.4.0.tgz#17b997367a2a357da23d3348811144b0ba9bfb5e"
@@ -2085,6 +2096,34 @@
     "@uiw/react-codemirror" "4.22.2"
     react-remove-scroll "2.5.10"
 
+"@strapi/design-system@^2.0.0-rc.11":
+  version "2.0.0-rc.14"
+  resolved "https://registry.yarnpkg.com/@strapi/design-system/-/design-system-2.0.0-rc.14.tgz#7478f50b3740311a3df3b929f410699b039cf5ef"
+  integrity sha512-zOtArGfAQmKO5qqRE0IlONfjR1JL2VL/KjV3hE++KSybOZgfhbdckN4svpNtJ6i2Pv+glm7nHdu9h6AHRBuujQ==
+  dependencies:
+    "@codemirror/lang-json" "6.0.1"
+    "@floating-ui/react-dom" "2.1.0"
+    "@internationalized/date" "3.5.4"
+    "@internationalized/number" "3.5.3"
+    "@radix-ui/react-accordion" "1.1.2"
+    "@radix-ui/react-alert-dialog" "1.0.5"
+    "@radix-ui/react-avatar" "1.0.4"
+    "@radix-ui/react-checkbox" "1.0.4"
+    "@radix-ui/react-dialog" "1.0.5"
+    "@radix-ui/react-dismissable-layer" "1.0.5"
+    "@radix-ui/react-dropdown-menu" "2.0.6"
+    "@radix-ui/react-focus-scope" "1.0.4"
+    "@radix-ui/react-popover" "1.0.7"
+    "@radix-ui/react-progress" "1.0.3"
+    "@radix-ui/react-radio-group" "1.1.3"
+    "@radix-ui/react-scroll-area" "1.0.5"
+    "@radix-ui/react-switch" "1.0.3"
+    "@radix-ui/react-tabs" "1.0.4"
+    "@radix-ui/react-tooltip" "1.0.7"
+    "@strapi/ui-primitives" "2.0.0-rc.14"
+    "@uiw/react-codemirror" "4.22.2"
+    react-remove-scroll "2.5.10"
+
 "@strapi/email@5.4.0":
   version "5.4.0"
   resolved "https://registry.yarnpkg.com/@strapi/email/-/email-5.4.0.tgz#0c721937deb51ba682ee100e8c57de15024df50e"
@@ -2138,6 +2177,11 @@
   version "2.0.0-rc.13"
   resolved "https://registry.yarnpkg.com/@strapi/icons/-/icons-2.0.0-rc.13.tgz#ec5fbe60812943b71918a07cd56c869099ab3aa1"
   integrity sha512-z61p/LBRO/b9CNVtbbaq18LQ/ESuUBCFErd+h+2J2p+n75OSsD0baATvRCxbdCvR/WIIaYF03C5pvCp0Q5/rcA==
+
+"@strapi/icons@^2.0.0-rc.11":
+  version "2.0.0-rc.14"
+  resolved "https://registry.yarnpkg.com/@strapi/icons/-/icons-2.0.0-rc.14.tgz#ff3179c2c3c51ec70ac5e29982b74e1f2b531e87"
+  integrity sha512-6kamFHcsoFpffp96HmFGgpM8FDezwb86sJ4c3Ydp7+eTgtEsHd8yLekAQhpaWXd2ZsHwRDbLLR0Tu1orgvRVYg==
 
 "@strapi/logger@5.4.0":
   version "5.4.0"
@@ -2426,6 +2470,33 @@
     aria-hidden "1.2.4"
     react-remove-scroll "2.5.10"
 
+"@strapi/ui-primitives@2.0.0-rc.14":
+  version "2.0.0-rc.14"
+  resolved "https://registry.yarnpkg.com/@strapi/ui-primitives/-/ui-primitives-2.0.0-rc.14.tgz#b09a93ef9a69971886f87cbed076d735af6f4909"
+  integrity sha512-lCl370AKFJXjEJmZHW9r8m8gXwgQs+K2WqND2sykL3+1VNjawDhThnRtYqYxheCf10vW8aS0Zd1CduLZ6EoEjg==
+  dependencies:
+    "@radix-ui/number" "1.0.1"
+    "@radix-ui/primitive" "1.0.1"
+    "@radix-ui/react-collection" "1.0.3"
+    "@radix-ui/react-compose-refs" "1.0.1"
+    "@radix-ui/react-context" "1.0.1"
+    "@radix-ui/react-direction" "1.0.1"
+    "@radix-ui/react-dismissable-layer" "1.0.5"
+    "@radix-ui/react-focus-guards" "1.0.1"
+    "@radix-ui/react-focus-scope" "1.0.4"
+    "@radix-ui/react-id" "1.0.1"
+    "@radix-ui/react-popper" "1.1.3"
+    "@radix-ui/react-portal" "1.0.4"
+    "@radix-ui/react-primitive" "1.0.3"
+    "@radix-ui/react-slot" "1.0.2"
+    "@radix-ui/react-use-callback-ref" "1.0.1"
+    "@radix-ui/react-use-controllable-state" "1.0.1"
+    "@radix-ui/react-use-layout-effect" "1.0.1"
+    "@radix-ui/react-use-previous" "1.0.1"
+    "@radix-ui/react-visually-hidden" "1.0.3"
+    aria-hidden "1.2.4"
+    react-remove-scroll "2.5.10"
+
 "@strapi/upload@5.4.0":
   version "5.4.0"
   resolved "https://registry.yarnpkg.com/@strapi/upload/-/upload-5.4.0.tgz#e04fe14ec633330ff6bccae43d3dc022689c9881"
@@ -2607,6 +2678,14 @@
   version "14.5.2"
   resolved "https://registry.yarnpkg.com/@testing-library/user-event/-/user-event-14.5.2.tgz#db7257d727c891905947bd1c1a99da20e03c2ebd"
   integrity sha512-YAh82Wh4TIrxYLmfGcixwD18oIjyC1pFQC2Y01F2lzV2HTMiYrI0nze0FD0ocB//CKS/7jIUgae+adPqxK5yCQ==
+
+"@tinymce/tinymce-react@^5.1.1":
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/@tinymce/tinymce-react/-/tinymce-react-5.1.1.tgz#3b8555ceaccfa6bb8bb03c3b0c8baaccde138bde"
+  integrity sha512-DQ0wpvnf/9z8RsOEAmrWZ1DN1PKqcQHfU+DpM3llLze7FHmxVtzuN8O+FYh0oAAF4stzAXwiCIVacfqjMwRieQ==
+  dependencies:
+    prop-types "^15.6.2"
+    tinymce "^7.0.0 || ^6.0.0 || ^5.5.1"
 
 "@types/accepts@*":
   version "1.3.7"
@@ -8522,7 +8601,7 @@ react-intl@6.6.2:
     intl-messageformat "10.5.11"
     tslib "^2.4.0"
 
-react-intl@^6.6.8:
+react-intl@^6.6.8, react-intl@^6.8.4:
   version "6.8.9"
   resolved "https://registry.yarnpkg.com/react-intl/-/react-intl-6.8.9.tgz#ef36b2a19a0eb97afbeaeab9679273fcbf2ea261"
   integrity sha512-TUfj5E7lyUDvz/GtovC9OMh441kBr08rtIbgh3p0R8iF3hVY+V2W9Am7rb8BpJ/29BH1utJOqOOhmvEVh3GfZg==
@@ -9854,6 +9933,16 @@ tiny-warning@^1.0.2, tiny-warning@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/tiny-warning/-/tiny-warning-1.0.3.tgz#94a30db453df4c643d0fd566060d60a875d84754"
   integrity sha512-lBN9zLN/oAf68o3zNXYrdCt1kP8WsiGW8Oo2ka41b2IM5JL/S1CTyX1rW0mb/zSuJun0ZUrDxx4sqvYS2FWzPA==
+
+tinymce-i18n@^24.10.28:
+  version "24.11.25"
+  resolved "https://registry.yarnpkg.com/tinymce-i18n/-/tinymce-i18n-24.11.25.tgz#72bbc562daa5d68e19fd970048b59573c0c9ef27"
+  integrity sha512-/g56/NXUpkl7l17S1wkAg/3tMJ/YWR7qZimvsBibE+iHYo0CYnemmYn9dA4RBrmpr5ZEzhFz65u48Cr5MRfv5w==
+
+"tinymce@^7.0.0 || ^6.0.0 || ^5.5.1":
+  version "7.5.1"
+  resolved "https://registry.yarnpkg.com/tinymce/-/tinymce-7.5.1.tgz#4c207ab930d3a073bf851ddd3a8aa44d8d94d7bd"
+  integrity sha512-GRXJUB0BEIOUHUEC+q9IjsgWGIAQ4Tn5t5hfpB/YR7No3oPgKHG03v1d3nbov9aqdyVW7Be+UD4I3ZerQG30VQ==
 
 title-case@^2.1.0:
   version "2.1.1"

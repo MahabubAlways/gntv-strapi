@@ -1,7 +1,8 @@
 {
   "collectionName": "components_demo_demo_events",
   "info": {
-    "displayName": "demoEvent"
+    "displayName": "demoEvent",
+    "description": ""
   },
   "options": {},
   "attributes": {
@@ -13,6 +14,10 @@
     },
     "VideoURL": {
       "type": "string"
+    },
+    "description2": {
+      "type": "customField",
+      "customField": "plugin::tinymce.tinymce"
     }
   }
 }
