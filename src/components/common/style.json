@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_common_styles",
+  "info": {
+    "displayName": "style",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "titleFontSize": {
+      "type": "string",
+      "regex": "^(\\d+(\\.\\d+)?|\\.\\d+)(px|em|rem)$"
+    },
+    "subTitleFontSize": {
+      "type": "string",
+      "regex": "^(\\d+(\\.\\d+)?|\\.\\d+)(px|em|rem)$"
+    },
+    "titleColor": {
+      "type": "string",
+      "regex": "^#([A-Fa-f0-9]{3}|[A-Fa-f0-9]{6}|[A-Fa-f0-9]{8})$"
+    },
+    "subTitleColor": {
+      "type": "string",
+      "regex": "^#([A-Fa-f0-9]{3}|[A-Fa-f0-9]{6}|[A-Fa-f0-9]{8})$"
+    }
+  }
+}

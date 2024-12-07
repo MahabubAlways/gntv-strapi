@@ -16,6 +16,11 @@
       "type": "component",
       "repeatable": false,
       "component": "common.transition"
+    },
+    "style": {
+      "type": "component",
+      "repeatable": false,
+      "component": "common.style"
     }
   }
 }
