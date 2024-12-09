@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_common_font_families",
+  "info": {
+    "displayName": "fontFamily"
+  },
+  "options": {},
+  "attributes": {
+    "fontName": {
+      "type": "enumeration",
+      "enum": [
+        "Roboto",
+        "Open Sans",
+        "Lato",
+        "Montserrat",
+        "Poppins",
+        "Oswald",
+        "Nunito",
+        "Raleway",
+        "Playfair Display",
+        "Merriweather"
+      ]
+    }
+  }
+}

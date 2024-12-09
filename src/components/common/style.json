@@ -15,12 +15,25 @@
       "regex": "^(\\d+(\\.\\d+)?|\\.\\d+)(px|em|rem)$"
     },
     "titleColor": {
-      "type": "string",
-      "regex": "^#([A-Fa-f0-9]{3}|[A-Fa-f0-9]{6}|[A-Fa-f0-9]{8})$"
+      "type": "customField",
+      "regex": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$",
+      "customField": "plugin::color-picker.color"
     },
     "subTitleColor": {
-      "type": "string",
-      "regex": "^#([A-Fa-f0-9]{3}|[A-Fa-f0-9]{6}|[A-Fa-f0-9]{8})$"
+      "type": "customField",
+      "regex": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$",
+      "customField": "plugin::color-picker.color"
+    },
+    "titleFontFamily": {
+      "displayName": "fontFamily",
+      "type": "component",
+      "repeatable": false,
+      "component": "common.font-family"
+    },
+    "subTitleFontFamily": {
+      "type": "component",
+      "repeatable": false,
+      "component": "common.font-family"
     }
   }
 }
