@@ -1,24 +1,46 @@
 {
   "collectionName": "components_common_font_families",
   "info": {
-    "displayName": "fontFamily"
+    "displayName": "Typography",
+    "description": ""
   },
   "options": {},
   "attributes": {
     "fontName": {
       "type": "enumeration",
       "enum": [
+        "Anastasia",
+        "LTC Globe Gothic",
         "Roboto",
         "Open Sans",
-        "Lato",
-        "Montserrat",
-        "Poppins",
-        "Oswald",
-        "Nunito",
-        "Raleway",
-        "Playfair Display",
-        "Merriweather"
+        "Poppins"
       ]
+    },
+    "fontWeight": {
+      "type": "enumeration",
+      "enum": [
+        "w100 (Thin)",
+        "w200 (Extra Light)",
+        "w300 (Light)",
+        "w400 (Normal)",
+        "w500 (Medium)",
+        "w600 (Semi Bold)",
+        "w700 (Bold)",
+        "w800 (Extra Bold)",
+        "w900 (Black)",
+        "Default"
+      ],
+      "default": "Default"
+    },
+    "textAlign": {
+      "type": "enumeration",
+      "enum": [
+        "Left",
+        "Center",
+        "Right",
+        "Justify"
+      ],
+      "default": "Left"
     }
   }
 }

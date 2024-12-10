@@ -24,13 +24,13 @@
       "regex": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$",
       "customField": "plugin::color-picker.color"
     },
-    "titleFontFamily": {
+    "titleTypography": {
       "displayName": "fontFamily",
       "type": "component",
       "repeatable": false,
       "component": "common.font-family"
     },
-    "subTitleFontFamily": {
+    "subTitleTypography": {
       "type": "component",
       "repeatable": false,
       "component": "common.font-family"
