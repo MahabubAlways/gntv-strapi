@@ -10,12 +10,12 @@ export default [
     },
   },
   // Add this new route
-  {
-    method: 'POST',
-    path: '/show-update',
-    handler: 'postShowUpdate.showUpdate',
-    config: {
-      scope: ['plugin::showcase-management.postShowUpdate.showUpdate'],
-    },
-  },
+  // {
+  //   method: 'POST',
+  //   path: '/show-update',
+  //   handler: 'postShowUpdate.showUpdate',
+  //   config: {
+  //     scope: ['plugin::showcase-management.postShowUpdate.showUpdate'],
+  //   },
+  // },
 ];

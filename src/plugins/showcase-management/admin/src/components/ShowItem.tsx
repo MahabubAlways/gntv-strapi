@@ -22,9 +22,9 @@ const StyledDrag = styled(Drag)`
 interface Show {
   show_video_url: string;
   show_id: string;
-  Active: number;
+  show_active: number;
   show_title: string;
-  show_creator: string;
+  creator_identity: string;
   show_description: string;
   thumbnail_url: string;
   order: number;
@@ -43,7 +43,7 @@ const ShowItem = ({ show, onCheckboxChange, fetchShows }: IProps) => {
 
   const [formData, setFormData] = useState({
     show_title: show.show_title,
-    show_creator: show.show_creator,
+    show_creator: show.creator_identity,
     show_description: show.show_description,
     show_video_url: show.show_video_url,
     thumbnail_url: show.thumbnail_url,
@@ -65,13 +65,13 @@ const ShowItem = ({ show, onCheckboxChange, fetchShows }: IProps) => {
       <StyledTd>
         <Checkbox
           aria-label="Select show"
-          checked={show.Active === 1 ? true : false}
+          checked={show.show_active === 1 ? true : false}
           onCheckedChange={(isChecked: boolean) => onCheckboxChange(show.show_id, isChecked)}
         />
       </StyledTd>
-      <StyledTd>{show.Active == 0 ? 'False' : 'True'}</StyledTd>
+      <StyledTd>{show.show_active == 0 ? 'False' : 'True'}</StyledTd>
       <StyledTd>{show.show_title}</StyledTd>
-      <StyledTd>{show.show_creator}</StyledTd>
+      <StyledTd>{show.creator_identity}</StyledTd>
       <StyledTd>{show.show_description}</StyledTd>
       <StyledTd>
         {show.thumbnail_url ? (

@@ -14,10 +14,21 @@ const getShowsController = ({ strapi }: { strapi: Core.Strapi }) => ({
           database: 'Staging_Interocitor',
         });
         try {
-          const [rows] = await connection.execute(
-            'SELECT show_id, Active, show_title, show_creator, show_description, show_video_url, thumbnail_url, `order` FROM shows ORDER BY `order` ASC'
-          );
-          return rows;
+          const [shows]: [any[], any] = await connection.execute('SELECT * FROM shows');
+          const [creators]: [any[], any] = await connection.execute('SELECT * FROM creators');
+          const [showsOrder]: [any[], any] = await connection.execute('SELECT * FROM shows_order');
+
+          const showsWithCreators = shows.map((show: any) => {
+            const creator = creators.find((creator) => creator.member_id === show.show_owner);
+            const isActive = showsOrder.some((order) => order.show_id === show.show_id);
+            return {
+              ...show,
+              creator_identity: creator ? creator.creator_identity : null,
+              show_active: isActive,
+            };
+          });
+
+          return showsWithCreators;
         } finally {
           await connection.end();
         }
@@ -30,6 +41,7 @@ const getShowsController = ({ strapi }: { strapi: Core.Strapi }) => ({
       throw new ApplicationError('Failed to fetch shows');
     }
   },
+
   async getActiveShows(ctx) {
     try {
       const fetchShows = async () => {
@@ -40,10 +52,20 @@ const getShowsController = ({ strapi }: { strapi: Core.Strapi }) => ({
           database: 'Staging_Interocitor',
         });
         try {
-          const [rows] = await connection.execute(
-            'SELECT show_title, show_description, show_video_url, thumbnail_url, show_creator FROM shows WHERE Active = TRUE ORDER BY `order` ASC'
+          const [shows]: [any[], any] = await connection.execute(
+            'SELECT * FROM shows WHERE show_id IN (SELECT show_id FROM shows_order) ORDER BY (SELECT show_order FROM shows_order WHERE shows_order.show_id = shows.show_id) ASC'
           );
-          return rows;
+          const [creators]: [any[], any] = await connection.execute('SELECT * FROM creators');
+
+          const showsWithCreators = shows.map((show: any) => {
+            const creator = creators.find((creator) => creator.member_id === show.show_owner);
+            return {
+              ...show,
+              creator_identity: creator ? creator.creator_identity : null,
+            };
+          });
+
+          return showsWithCreators;
         } finally {
           await connection.end();
         }

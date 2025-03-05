@@ -35,6 +35,8 @@ export default [
             "cdn.jsdelivr.net",
             "market-assets.strapi.io",
             "dev.globalnation.tv",
+            "s3-eu-north-1.amazonaws.com",
+            "admin.emptytainment.com",
           ],
           "media-src": [
             "'self'",
@@ -45,6 +47,8 @@ export default [
             "blob:",
             "market-assets.strapi.io",
             "dev.globalnation.tv",
+            "s3-eu-north-1.amazonaws.com",
+            "admin.emptytainment.com",
           ],
           "font-src": ["'self'", "*.tinymce.com", "*.tiny.cloud"],
         },

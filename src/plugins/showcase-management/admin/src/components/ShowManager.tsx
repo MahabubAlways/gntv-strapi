@@ -64,9 +64,9 @@ const StyledTh = styled(Th)`
 
 interface Show {
   show_id: string;
-  Active: number;
+  show_active: number;
   show_title: string;
-  show_creator: string;
+  creator_identity: string;
   show_description: string;
   show_video_url: string;
   thumbnail_url: string;
@@ -91,6 +91,8 @@ const ShowManager = () => {
     fetchShows();
   }, [get]);
 
+  console.log(shows);
+
   const handleSave = async (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
@@ -100,7 +102,7 @@ const ShowManager = () => {
       showOrder.push({
         show_id: show.show_id,
         order: index + 1,
-        Active: show.Active,
+        Active: show.show_active,
       });
     });
 
