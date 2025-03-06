@@ -2,7 +2,7 @@ export default [
   {
     method: 'GET',
     path: '/shows',
-    handler: 'getShowsController.getShows',
+    handler: 'getAdminController.getShows',
     config: {
       policies: [],
       auth: false,

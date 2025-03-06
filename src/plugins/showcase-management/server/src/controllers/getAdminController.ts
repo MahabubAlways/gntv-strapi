@@ -3,7 +3,7 @@ import type { Core } from '@strapi/strapi';
 import mysql from 'mysql2/promise';
 const { ApplicationError } = require('@strapi/utils').errors;
 
-const getShowsController = ({ strapi }: { strapi: Core.Strapi }) => ({
+const getAdminController = ({ strapi }: { strapi: Core.Strapi }) => ({
   async getShows(ctx) {
     try {
       const fetchShows = async () => {
@@ -78,6 +78,84 @@ const getShowsController = ({ strapi }: { strapi: Core.Strapi }) => ({
       throw new ApplicationError('Failed to fetch shows');
     }
   },
+
+  async getProfiles(ctx) {
+    try {
+      const fetchProfiles = async () => {
+        const connection = await mysql.createConnection({
+          host: '216.225.203.234',
+          user: 'devdb',
+          password: '1t_f1m71G',
+          database: 'Staging_Interocitor',
+        });
+        try {
+          const [creators]: [any[], any] = await connection.execute('SELECT * FROM creators');
+          const [creatorsOrder]: [any[], any] = await connection.execute(
+            'SELECT * FROM creators_order'
+          );
+
+          const profiles = creators.map((creator: any) => {
+            const isActive = creatorsOrder.some((order) => order.member_id === creator.member_id);
+            return {
+              ...creator,
+              creator_active: isActive,
+            };
+          });
+
+          return profiles;
+        } finally {
+          await connection.end();
+        }
+      };
+
+      const profiles = await fetchProfiles();
+      ctx.body = profiles;
+    } catch (error) {
+      console.error('Error fetching profiles:', error);
+      throw new ApplicationError('Failed to fetch profiles');
+    }
+  },
+
+  async getActiveProfiles(ctx) {
+    try {
+      const fetchProfiles = async () => {
+        const connection = await mysql.createConnection({
+          host: '216.225.203.234',
+          user: 'devdb',
+          password: '1t_f1m71G',
+          database: 'Staging_Interocitor',
+        });
+        try {
+          const [profiles]: [any[], any] = await connection.execute(
+            'SELECT * FROM creators WHERE member_id IN (SELECT member_id FROM creators_order) ORDER BY (SELECT creator_order FROM creators_order WHERE creators_order.member_id = creators.member_id) ASC'
+          );
+          const [profiles_order]: [any[], any] = await connection.execute(
+            'SELECT * FROM creators_order'
+          );
+
+          const creators = profiles.map((profile: any) => {
+            const creator = profiles_order.find(
+              (creator) => creator.member_id === profile.member_id
+            );
+            return {
+              ...profile,
+              creator_order: creator ? creator.creator_order : null,
+            };
+          });
+
+          return creators;
+        } finally {
+          await connection.end();
+        }
+      };
+
+      const profiles = await fetchProfiles();
+      ctx.body = profiles;
+    } catch (error) {
+      console.error('Error fetching profiles:', error);
+      throw new ApplicationError('Failed to fetch profiles');
+    }
+  },
 });
 
-export default getShowsController;
+export default getAdminController;

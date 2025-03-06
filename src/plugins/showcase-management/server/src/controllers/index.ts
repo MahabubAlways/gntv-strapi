@@ -1,10 +1,10 @@
-import getShowsController from './getShowsController';
+import getAdminController from './getAdminController';
 // import postShowActive from './postShowActive';
 // import postShowOrder from './postShowOrder';
 // import postShowUpdate from './postShowUpdate';
 
 export default {
-  getShowsController,
+  getAdminController,
   // postShowUpdate,
   // postShowOrder,
   // postShowActive,
