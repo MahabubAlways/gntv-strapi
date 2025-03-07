@@ -30,13 +30,16 @@ export const fetchActiveShowsData = async (): Promise<any[]> => {
       (SELECT show_id FROM shows_order) 
       ORDER BY (SELECT show_order FROM shows_order WHERE shows_order.show_id = shows.show_id) ASC`
     );
+    const [showsOrder]: [any[], any] = await connection.execute('SELECT * FROM shows_order');
     const [creators]: [any[], any] = await connection.execute('SELECT * FROM creators');
 
     return shows.map((show: any) => {
       const creator = creators.find((creator: any) => creator.member_id === show.show_owner);
+      const isActive = showsOrder.find((order: any) => order.show_id === show.show_id);
       return {
         ...show,
         creator_identity: creator ? creator.creator_identity : null,
+        show_order: isActive ? isActive.show_order : null,
       };
     });
   } finally {
