@@ -1,7 +1,11 @@
 export default () => ({
-  "showcase-management": {
+  // "showcase-management": {
+  //   enabled: true,
+  //   resolve: "./src/plugins/showcase-management",
+  // },
+  "gntv-dashboard": {
     enabled: true,
-    resolve: "./src/plugins/showcase-management",
+    resolve: "./src/plugins/gntv-dashboard",
   },
   seo: {
     enabled: true,
