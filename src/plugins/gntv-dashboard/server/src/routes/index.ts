@@ -1,13 +1,13 @@
-import showcase from './showcase';
-import showcaseAdmin from './showcaseAdmin';
+import getRoutes from './getRoutes';
+import postRoutes from './postRoutes';
 
 export default {
-  showcase: {
+  getRoutes: {
     type: 'content-api',
-    routes: [...showcase],
+    routes: [...getRoutes],
   },
-  admin: {
-    type: 'admin',
-    routes: [...showcaseAdmin],
+  postRoutes: {
+    type: 'content-api',
+    routes: [...postRoutes],
   },
 };

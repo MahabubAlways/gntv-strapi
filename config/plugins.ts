@@ -3,6 +3,13 @@ export default () => ({
   //   enabled: true,
   //   resolve: "./src/plugins/showcase-management",
   // },
+  "users-permissions": {
+    config: {
+      register: {
+        allowedFields: ["role"],
+      },
+    },
+  },
   "gntv-dashboard": {
     enabled: true,
     resolve: "./src/plugins/gntv-dashboard",
