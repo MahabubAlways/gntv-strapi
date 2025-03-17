@@ -3,12 +3,24 @@ import type { Core } from '@strapi/strapi';
 import {
   fetchActiveProfilesData,
   fetchActiveShowsData,
+  fetchCreatorProfile,
+  fetchMyShowsData,
   fetchProfilesData,
   fetchShowsData,
 } from './ControllerGetFunctions';
 const { ApplicationError } = require('@strapi/utils').errors;
 
 const getAdminController = ({ strapi }: { strapi: Core.Strapi }) => ({
+  async myShows(ctx) {
+    const { user } = ctx.request.query;
+    try {
+      ctx.body = await fetchMyShowsData(user);
+    } catch (error) {
+      console.error('Error fetching shows:', error);
+      throw new ApplicationError('Failed to fetch shows');
+    }
+  },
+
   async getShows(ctx) {
     try {
       ctx.body = await fetchShowsData();
@@ -30,6 +42,16 @@ const getAdminController = ({ strapi }: { strapi: Core.Strapi }) => ({
   async getProfiles(ctx) {
     try {
       ctx.body = await fetchProfilesData();
+    } catch (error) {
+      console.error('Error fetching profiles:', error);
+      throw new ApplicationError('Failed to fetch profiles');
+    }
+  },
+
+  async getCreatorProfile(ctx) {
+    const { user } = ctx.request.query;
+    try {
+      ctx.body = await fetchCreatorProfile(user);
     } catch (error) {
       console.error('Error fetching profiles:', error);
       throw new ApplicationError('Failed to fetch profiles');

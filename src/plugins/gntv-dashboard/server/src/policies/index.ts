@@ -1,1 +1,5 @@
-export default {};
+import isSubscriber from './is-subscriber';
+
+export default {
+  isSubscriber,
+};

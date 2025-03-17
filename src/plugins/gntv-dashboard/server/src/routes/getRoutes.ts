@@ -11,11 +11,31 @@ export default [
   },
   {
     method: 'GET',
+    path: '/my-shows',
+    handler: 'getAdminController.myShows',
+    config: {
+      auth: {
+        policies: ['plugin::gntv-dashboard.isSubscriber'],
+      },
+    },
+  },
+  {
+    method: 'GET',
     path: '/active-shows',
     handler: 'getAdminController.getActiveShows',
     config: {
       auth: {
         scope: ['plugin::gntv-dashboard.getAdminController.getActiveShows'],
+      },
+    },
+  },
+  {
+    method: 'GET',
+    path: '/creator-profile',
+    handler: 'getAdminController.getCreatorProfile',
+    config: {
+      auth: {
+        policies: ['plugin::gntv-dashboard.isSubscriber'],
       },
     },
   },

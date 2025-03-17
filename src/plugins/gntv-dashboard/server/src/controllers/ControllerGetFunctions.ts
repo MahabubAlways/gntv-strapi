@@ -1,6 +1,39 @@
 'use strict';
 import { getDatabaseConnection } from '../../../db-conn';
 
+export const fetchMyShowsData = async (user) => {
+  const connection = await getDatabaseConnection();
+  try {
+    const [member] = await connection.execute<any[]>(
+      'SELECT member_id FROM members WHERE email = ?',
+      [user]
+    );
+
+    const [creator] = await connection.execute<any[]>(
+      'SELECT * FROM creators WHERE member_id = ?',
+      [member[0].member_id]
+    );
+
+    const [shows] = await connection.execute<any[]>(
+      'SELECT * FROM shows WHERE show_owner = ? LIMIT 6',
+      [member[0].member_id]
+    );
+
+    const [showsOrder] = await connection.execute<any[]>('SELECT * FROM shows_order');
+
+    return shows.map((show: any) => {
+      const isActive = showsOrder.some((order: any) => order.show_id === show.show_id);
+      return {
+        ...show,
+        creator_identity: creator && creator.length > 0 ? creator[0].creator_identity : null,
+        show_active: isActive,
+      };
+    });
+  } finally {
+    await connection.end();
+  }
+};
+
 export const fetchShowsData = async () => {
   const connection = await getDatabaseConnection();
   try {
@@ -60,6 +93,25 @@ export const fetchProfilesData = async (): Promise<any[]> => {
         creator_active: isActive,
       };
     });
+  } finally {
+    await connection.end();
+  }
+};
+
+export const fetchCreatorProfile = async (user): Promise<any[]> => {
+  const connection = await getDatabaseConnection();
+  try {
+    const [member] = await connection.execute<any[]>(
+      'SELECT member_id FROM members WHERE email = ?',
+      [user]
+    );
+
+    const [creator] = await connection.execute<any[]>(
+      'SELECT * FROM creators WHERE member_id = ?',
+      [member[0].member_id]
+    );
+
+    return creator[0];
   } finally {
     await connection.end();
   }
