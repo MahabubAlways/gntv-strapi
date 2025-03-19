@@ -1,5 +1,6 @@
 'use strict';
 import type { Core } from '@strapi/strapi';
+import postAdminRegister from './postAdminRegister';
 import postCheckEmail from './postCheckEmail';
 import postRegister from './postRegister';
 import { postShowUpdate } from './postShowUpdate';
@@ -58,6 +59,7 @@ const postAdminController = ({ strapi }: { strapi: Core.Strapi }) => ({
       throw new ApplicationError('Failed to check email');
     }
   },
+
   async postRegister(ctx) {
     try {
       const userData: UserData = ctx.request.body;
@@ -76,6 +78,22 @@ const postAdminController = ({ strapi }: { strapi: Core.Strapi }) => ({
       ctx.body = { success: true, message: 'Successfully Registered', data: result };
     } catch (error) {
       ctx.throw(400, error);
+    }
+  },
+
+  async postAdminRegister(ctx) {
+    try {
+      const userData: UserData = ctx.request.body;
+      if (typeof userData !== 'object' || !userData.email || !userData.password) {
+        throw new ApplicationError(
+          'Invalid data: userData must be an object with an email and password property'
+        );
+      }
+      const result = await postAdminRegister(userData);
+      ctx.body = { success: true, message: 'Admin successfully registered', data: result };
+    } catch (error) {
+      console.error('Error registering admin:', error);
+      throw new ApplicationError('Failed to register admin');
     }
   },
 });

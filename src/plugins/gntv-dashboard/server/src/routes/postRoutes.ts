@@ -19,6 +19,16 @@ export default [
       },
     },
   },
+  {
+    method: 'POST',
+    path: '/admin-register',
+    handler: 'postAdminController.postAdminRegister',
+    config: {
+      auth: {
+        scope: ['plugin::gntv-dashboard.postAdminController.postAdminRegister'],
+      },
+    },
+  },
 ];
 
 // export default [
