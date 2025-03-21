@@ -43,11 +43,14 @@ export const fetchShowsData = async () => {
 
     return shows.map((show: any) => {
       const creator = creators.find((creator: any) => creator.member_id === show.show_owner);
-      const isActive = showsOrder.some((order: any) => order.show_id === show.show_id);
+      const order = showsOrder.find((order: any) => order.show_id === show.show_id);
+      const isActive = !!order;
+
       return {
         ...show,
         creator_identity: creator ? creator.creator_identity : null,
         show_active: isActive,
+        show_order: order ? order.show_order : null,
       };
     });
   } finally {
@@ -87,9 +90,11 @@ export const fetchProfilesData = async (): Promise<any[]> => {
     const [creatorsOrder]: [any[], any] = await connection.execute('SELECT * FROM creators_order');
 
     return creators.map((creator: any) => {
-      const isActive = creatorsOrder.some((order: any) => order.member_id === creator.member_id);
+      const order = creatorsOrder.find((order: any) => order.member_id === creator.member_id);
+      const isActive = !!order;
       return {
         ...creator,
+        creator_order: order ? order.creator_order : null,
         creator_active: isActive,
       };
     });
