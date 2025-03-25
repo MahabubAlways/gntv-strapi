@@ -1,4 +1,4 @@
-export default () => ({
+export default ({ env }) => ({
   // "showcase-management": {
   //   enabled: true,
   //   resolve: "./src/plugins/showcase-management",
@@ -13,6 +13,24 @@ export default () => ({
   "gntv-dashboard": {
     enabled: true,
     resolve: "./src/plugins/gntv-dashboard",
+  },
+  email: {
+    config: {
+      provider: "nodemailer",
+      providerOptions: {
+        host: env("SMTP_HOST"),
+        port: env("SMTP_PORT"),
+        auth: {
+          user: env("SMTP_USERNAME"),
+          pass: env("SMTP_PASSWORD"),
+        },
+        // ... any custom nodemailer options
+      },
+      settings: {
+        defaultFrom: env("EMAIL_ADDRESS_FROM"),
+        defaultReplyTo: env("EMAIL_ADDRESS_REPLY"),
+      },
+    },
   },
   seo: {
     enabled: true,

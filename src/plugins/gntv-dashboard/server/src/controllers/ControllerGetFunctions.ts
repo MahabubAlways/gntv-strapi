@@ -22,11 +22,13 @@ export const fetchMyShowsData = async (user) => {
     const [showsOrder] = await connection.execute<any[]>('SELECT * FROM shows_order');
 
     return shows.map((show: any) => {
-      const isActive = showsOrder.some((order: any) => order.show_id === show.show_id);
+      const order = showsOrder.find((order: any) => order.show_id === show.show_id);
+      const isActive = !!order;
       return {
         ...show,
         creator_identity: creator && creator.length > 0 ? creator[0].creator_identity : null,
         show_active: isActive,
+        show_order: order ? order.show_order : null,
       };
     });
   } finally {
