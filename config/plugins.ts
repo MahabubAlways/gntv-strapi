@@ -8,6 +8,9 @@ export default ({ env }) => ({
       register: {
         allowedFields: ["role"],
       },
+      jwt: {
+        expiresIn: "7d",
+      },
     },
   },
   "gntv-dashboard": {
@@ -18,13 +21,17 @@ export default ({ env }) => ({
     config: {
       provider: "nodemailer",
       providerOptions: {
-        host: env("SMTP_HOST"),
-        port: env("SMTP_PORT"),
+        host: env("EMAIL_SMTP_HOST"),
+        port: env("EMAIL_SMTP_PORT"),
         auth: {
-          user: env("SMTP_USERNAME"),
-          pass: env("SMTP_PASSWORD"),
+          user: env("EMAIL_SMTP_USER"),
+          pass: env("EMAIL_SMTP_PASS"),
         },
-        // ... any custom nodemailer options
+        secure: false,
+        tls: {
+          rejectUnauthorized: true,
+          ciphers: "SSLv3",
+        },
       },
       settings: {
         defaultFrom: env("EMAIL_ADDRESS_FROM"),

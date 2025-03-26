@@ -22,7 +22,6 @@ export const postRegister = async (userData: UserData) => {
       email: userData.email,
       password: userData.password,
       provider: 'local',
-      confirmed: true, // Set to false if email confirmation is required
       role: roleId,
     });
 
@@ -42,6 +41,14 @@ export const postRegister = async (userData: UserData) => {
     const jwt = strapi.plugins['users-permissions'].services.jwt.issue({
       id: user.id,
     });
+
+    // Send confirmation email using Strapi's built-in service
+    try {
+      await strapi.plugins['users-permissions'].services.user.sendConfirmationEmail(user);
+    } catch (emailError) {
+      console.error('Error sending confirmation email:', emailError);
+      // Continue with the registration process even if email fails
+    }
 
     // Return user info and token
     return {
